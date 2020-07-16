@@ -9,7 +9,7 @@ import lombok.ToString;
  * @Blog: https://blog.csdn.net/zy13765287861
  * @Version: 1.0
  * @Date: 2020-07-16 11:19
- * @PS:
+ * @PS: 部门实体
  */
 @Getter
 @Setter

@@ -60,7 +60,6 @@ public class LoginController {
         return "register";
     }
 
-
     @RequestMapping("/doReg")
     public String doReg(Employee employee, Model model) {
         Integer result = employeeService.doReg(employee);

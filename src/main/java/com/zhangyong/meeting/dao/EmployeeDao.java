@@ -1,6 +1,9 @@
 package com.zhangyong.meeting.dao;
 
 import com.zhangyong.meeting.bean.Employee;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @Author: 张勇
@@ -13,6 +16,7 @@ public interface EmployeeDao {
 
     /**
      * 登录
+     *
      * @param username
      * @return
      */
@@ -20,8 +24,25 @@ public interface EmployeeDao {
 
     /**
      * 注册
+     *
      * @param employee
      * @return
      */
     Integer doReg(Employee employee);
+
+    /**
+     * 查询所有的员工信息
+     *
+     * @return
+     */
+    List<Employee> getAllEmpsStatus(Integer status);
+
+    /**
+     * 更改状态
+     *
+     * @param employeeId
+     * @param status
+     * @return
+     */
+    Integer updatestatus(@Param("employeeId") Integer employeeId, @Param("status") Integer status);
 }

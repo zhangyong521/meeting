@@ -6,6 +6,8 @@ import com.zhangyong.meeting.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @Author: 张勇
  * @Blog: https://blog.csdn.net/zy13765287861
@@ -34,5 +36,13 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.setRole(1);
         employee.setStatus(0);
         return employeeDao.doReg(employee);
+    }
+
+    public List<Employee> getAllEmpsStatus(Integer status) {
+        return employeeDao.getAllEmpsStatus(status);
+    }
+
+    public Integer updatestatus(Integer employeeId, Integer status) {
+        return employeeDao.updatestatus(employeeId,status);
     }
 }

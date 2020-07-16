@@ -3,6 +3,8 @@ package com.zhangyong.meeting.service;
 import com.zhangyong.meeting.bean.Employee;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @Author: 张勇
  * @Blog: https://blog.csdn.net/zy13765287861
@@ -25,4 +27,19 @@ public interface EmployeeService {
      * @return
      */
     Integer doReg(Employee employee);
+
+    /**
+     * 查询所有的用户
+     * @return
+     */
+    List<Employee> getAllEmpsStatus(Integer status);
+
+    /**
+     * 更改状态
+     * @param employeeId
+     * @param status
+     * @return
+     */
+    Integer updatestatus(Integer employeeId, Integer status);
+
 }

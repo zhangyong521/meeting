@@ -3,7 +3,9 @@ package com.zhangyong.meeting.controller;
 import com.zhangyong.meeting.bean.Department;
 import com.zhangyong.meeting.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -13,14 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
  * @Date: 2020-07-16 11:25
  * @PS:
  */
-@RestController
+@Controller
+@RequestMapping("/admin")
 public class DepartmentController {
-    @Autowired
-    private DepartmentService departmentService;
-
-    @GetMapping("/dep")
-    public void getDepById(Integer id) {
-        Department department = departmentService.getDepById(id);
-        System.out.println("department=" + department);
+    @RequestMapping("/departments")
+    public String departments() {
+        return "departments";
     }
+
 }

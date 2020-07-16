@@ -10,4 +10,11 @@
         insert into employee(employeename,username,phone,email,status,departmentid,password,role)
              values (#{employeeName},#{username},#{phone},#{email},#{status},#{departmentId},#{password},#{role})
     </insert>
+    <select id="getAllEmpsStatus" resultType="com.zhangyong.meeting.bean.Employee">
+        select * from employee where status=#{status};
+    </select>
+
+    <update id="updatestatus">
+        update employee set status=#{status} where employeeid=#{employeeId}
+    </update>
 </mapper>

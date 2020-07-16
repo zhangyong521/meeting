@@ -14,6 +14,15 @@
     <!--静态页面放行-->
     <mvc:resources mapping="/**" location="/"/>
 
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/images/**"/>
+            <mvc:exclude-mapping path="/styles/**"/>
+            <bean class="com.zhangyong.meeting.fifter.PermissFifter"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
     <!--配置模板引擎(视图解析器)-->
     <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
         <property name="templateLoaderPath" value="/WEB-INF/ftl/"/>
