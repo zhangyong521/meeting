@@ -18,4 +18,11 @@ public interface EmployeeService {
      * @return
      */
     Employee doLogin(String username, String password);
+
+    /**
+     * 注册
+     * @param employee
+     * @return
+     */
+    Integer doReg(Employee employee);
 }

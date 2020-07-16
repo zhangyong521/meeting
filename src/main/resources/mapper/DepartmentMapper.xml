@@ -5,4 +5,7 @@
     <select id="getDepById" resultType="com.zhangyong.meeting.bean.Department">
         select * from department where departmentid=#{id};
     </select>
+    <select id="getAllDeps" resultType="com.zhangyong.meeting.bean.Department">
+        select * from department;
+    </select>
 </mapper>

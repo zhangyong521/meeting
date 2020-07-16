@@ -1,9 +1,12 @@
 package com.zhangyong.meeting.service;
 
 import com.zhangyong.meeting.bean.Department;
+import com.zhangyong.meeting.bean.Employee;
 import com.zhangyong.meeting.dao.DepartmentDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @Author: 张勇
@@ -13,12 +16,20 @@ import org.springframework.stereotype.Service;
  * @PS:
  */
 @Service
-public class DepartmentService {
+public interface DepartmentService {
 
-    @Autowired
-    private DepartmentDao departmentDao;
+    /**
+     * 根据id查询
+     * @param id
+     * @return
+     */
+    Department getDepById(Integer id);
 
-    public Department getDepById(Integer id) {
-        return departmentDao.getDepById(id);
-    }
+    /**
+     * 查询全部部门
+     * @return
+     */
+    List<Department> getAllDeps();
+
+
 }

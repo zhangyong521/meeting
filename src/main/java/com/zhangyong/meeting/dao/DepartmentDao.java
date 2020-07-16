@@ -1,6 +1,9 @@
 package com.zhangyong.meeting.dao;
 
 import com.zhangyong.meeting.bean.Department;
+import com.zhangyong.meeting.bean.Employee;
+
+import java.util.List;
 
 /**
  * @Author: 张勇
@@ -16,5 +19,12 @@ public interface DepartmentDao {
      * @return
      */
     Department getDepById(Integer id);
+
+    /**
+     * 查询全部部门
+     * @return
+     */
+    List<Department> getAllDeps();
+
 
 }

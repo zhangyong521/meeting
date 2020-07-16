@@ -17,4 +17,11 @@ public interface EmployeeDao {
      * @return
      */
     Employee loadEmpByUserName(String username);
+
+    /**
+     * 注册
+     * @param employee
+     * @return
+     */
+    Integer doReg(Employee employee);
 }

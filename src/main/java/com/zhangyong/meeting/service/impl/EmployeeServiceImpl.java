@@ -25,4 +25,14 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
         return employee;
     }
+
+    public Integer doReg(Employee employee) {
+        Employee emp = employeeDao.loadEmpByUserName(employee.getUsername());
+        if (emp != null) {
+            return -1;
+        }
+        employee.setRole(1);
+        employee.setStatus(0);
+        return employeeDao.doReg(employee);
+    }
 }
