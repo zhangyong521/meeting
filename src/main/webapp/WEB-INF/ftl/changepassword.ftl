@@ -10,33 +10,37 @@
     <#include 'leftMenu.ftl'>
     <div class="page-content">
         <div class="content-nav">
-            登录
+            修改密码
         </div>
-        <form action="/doLogin" method="post">
+        <form>
             <fieldset>
-                <legend>登录信息</legend>
+                <legend>修改密码信息</legend>
                 <table class="formtable" style="width:50%">
                     <tr>
-                        <td>账号名:</td>
+                        <td>原密码:</td>
                         <td>
-                            <input name="username" id="accountname" type="text"/>
+                            <input id="origin" type="password"/>
                         </td>
                     </tr>
                     <tr>
-                        <td>密码:</td>
+                        <td>新密码:</td>
                         <td>
-                            <input name="password" id="new" type="password"/>
+                            <input id="new" type="password"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>确认新密码：</td>
+                        <td>
+                            <input id="confirm" type="password"/>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2" class="command">
-                            <input type="submit" value="登录" class="clickbutton"
-                                   onclick="window.location.href='notifiactions.html';"/>
+                            <input type="submit" value="确认修改" class="clickbutton"/>
                             <input type="button" value="返回" class="clickbutton" onclick="window.history.back();"/>
                         </td>
                     </tr>
                 </table>
-                <div style="color: #ff0114">${error!''}</div>
             </fieldset>
         </form>
     </div>
