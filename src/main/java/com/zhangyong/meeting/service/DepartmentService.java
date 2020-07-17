@@ -1,9 +1,6 @@
 package com.zhangyong.meeting.service;
 
 import com.zhangyong.meeting.bean.Department;
-import com.zhangyong.meeting.bean.Employee;
-import com.zhangyong.meeting.dao.DepartmentDao;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +17,7 @@ public interface DepartmentService {
 
     /**
      * 根据id查询
+     *
      * @param id
      * @return
      */
@@ -27,9 +25,32 @@ public interface DepartmentService {
 
     /**
      * 查询全部部门
+     *
      * @return
      */
     List<Department> getAllDeps();
 
 
+    /**
+     * 添加部门信息
+     *
+     * @param departmentName
+     * @return
+     */
+    Integer addDepartment(String departmentName);
+
+    /**
+     * 删除部门信息
+     * @param departmentId
+     * @return
+     */
+    Integer deleteDep(Integer departmentId);
+
+    /**
+     * 修改部门
+     * @param id
+     * @param name
+     * @return
+     */
+    Integer updateDep(Integer id, String name);
 }

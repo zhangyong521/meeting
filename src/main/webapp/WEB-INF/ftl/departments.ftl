@@ -3,6 +3,7 @@
 <head>
     <title>会议管理系统</title>
     <link rel="stylesheet" href="/styles/common.css"/>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
 </head>
 <body>
 <#include 'top.ftl'>
@@ -12,11 +13,11 @@
         <div class="content-nav">
             人员管理 > 部门管理
         </div>
-        <form>
+        <form action="/admin/addDepartment">
             <fieldset>
                 <legend>添加部门</legend>
                 部门名称:
-                <input type="text" id="departmentname" maxlength="20"/>
+                <input type="text" name="departmentName" id="departmentname" maxlength="20"/>
                 <input type="submit" class="clickbutton" value="添加"/>
             </fieldset>
         </form>
@@ -27,44 +28,59 @@
                 <th>部门名称</th>
                 <th>操作</th>
             </tr>
-            <tr>
-                <td>1</td>
-                <td>技术部</td>
-                <td>
-                    <a class="clickbutton" href="#">编辑</a>
-                    <a class="clickbutton" href="#">删除</a>
-                </td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>
-                    <input type="text" value="销售部"/>
-                </td>
-                <td>
-                    <a class="clickbutton" href="#">编辑</a>
-                    <a class="clickbutton" href="#">取消</a>
-                    <a class="clickbutton" href="#">删除</a>
-                </td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>市场部</td>
-                <td>
-                    <a class="clickbutton" href="#">编辑</a>
-                    <a class="clickbutton" href="#">删除</a>
-                </td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>行政部</td>
-                <td>
-                    <a class="clickbutton" href="#">编辑</a>
-                    <a class="clickbutton" href="#">删除</a>
-                </td>
-            </tr>
+            <#if deps??>
+                <#list deps as dep>
+                    <tr>
+                        <td>${dep.departmentId}</td>
+                        <td id="depname${dep.departmentId}">${dep.departmentName}</td>
+                        <td>
+                            <a class="clickbutton" id="edit${dep.departmentId}"
+                               onclick="editDep(${dep.departmentId})">编辑</a>
+                            <a class="clickbutton" style="display: none" id="cancel${dep.departmentId}"
+                               onclick="cancelDep(${dep.departmentId})">取消</a>
+                            <a class="clickbutton" href="/admin/deleteDep?departmentId=${dep.departmentId}">删除</a>
+                        </td>
+                    </tr>
+                </#list>
+            </#if>
         </table>
     </div>
 </div>
 <#include 'footer.ftl'>
+<script>
+    var depname;
+   //取消
+    function cancelDep(depid) {
+        var editBtn = $('#edit' + depid);
+        var cancelBtn = $('#cancel' + depid);
+        var ele = $('#depname' + depid);
+        cancelBtn.css('display', 'none');
+        editBtn.html('编辑');
+        ele.html(depname);
+    }
+    //编辑
+    function editDep(depid) {
+        var editBtn = $('#edit' + depid);
+        var cancelBtn = $('#cancel' + depid);
+        var ele = $('#depname' + depid);
+        depname=ele.html();
+        if (cancelBtn.css('display') == 'none') {
+            cancelBtn.css('display', 'inline');
+            editBtn.html('确定');
+            var depName = ele.text();
+            ele.html('<input type="text" value="' + depName + '"/>')
+        } else {
+            var children = ele.children('input');
+            var val = children.val();
+            $.post('/admin/updateDep', {id:depid, name:val}, function (msg) {
+                if (msg == 'success') {
+                    cancelBtn.css('display', 'none');
+                    editBtn.html('编辑');
+                    ele.html(val);
+                }
+            })
+        }
+    }
+</script>
 </body>
 </html>

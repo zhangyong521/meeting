@@ -2,10 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zhangyong.meeting.dao.DepartmentDao">
+
+    <delete id="deleteDep">
+        delete from department where departmentid=#{departmentId};
+    </delete>
+
     <select id="getDepById" resultType="com.zhangyong.meeting.bean.Department">
         select * from department where departmentid=#{id};
     </select>
+
     <select id="getAllDeps" resultType="com.zhangyong.meeting.bean.Department">
         select * from department;
     </select>
+
+    <select id="getDepByName" resultType="com.zhangyong.meeting.bean.Department">
+         select * from department where departmentname=#{departmentName};
+    </select>
+
+    <insert id="addDepartment" parameterType="java.lang.String">
+       insert into department (departmentname) values (#{departmentName});
+    </insert>
+
+    <update id="updateDep">
+        update department set departmentname=#{name} where departmentid=#{id}
+    </update>
+
 </mapper>

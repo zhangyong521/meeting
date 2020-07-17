@@ -1,7 +1,6 @@
 package com.zhangyong.meeting.service.impl;
 
 import com.zhangyong.meeting.bean.Department;
-import com.zhangyong.meeting.bean.Employee;
 import com.zhangyong.meeting.dao.DepartmentDao;
 import com.zhangyong.meeting.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +17,8 @@ import java.util.List;
  */
 @Service
 public class DepartmentServiceImpl implements DepartmentService {
-   @Autowired
+    @Autowired
     private DepartmentDao departmentDao;
-
 
 
     public Department getDepById(Integer id) {
@@ -29,6 +27,22 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     public List<Department> getAllDeps() {
         return departmentDao.getAllDeps();
+    }
+
+    public Integer addDepartment(String departmentName) {
+        Department dep = departmentDao.getDepByName(departmentName);
+        if (dep != null) {
+            return -1;
+        }
+        return departmentDao.addDepartment(departmentName);
+    }
+
+    public Integer deleteDep(Integer departmentId) {
+        return departmentDao.deleteDep(departmentId);
+    }
+
+    public Integer updateDep(Integer id, String name) {
+        return departmentDao.updateDep(id,name);
     }
 
 

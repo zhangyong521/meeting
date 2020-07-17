@@ -1,7 +1,7 @@
 package com.zhangyong.meeting.dao;
 
 import com.zhangyong.meeting.bean.Department;
-import com.zhangyong.meeting.bean.Employee;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -15,6 +15,7 @@ import java.util.List;
 public interface DepartmentDao {
     /**
      * 根据ID查询
+     *
      * @param id
      * @return
      */
@@ -22,9 +23,41 @@ public interface DepartmentDao {
 
     /**
      * 查询全部部门
+     *
      * @return
      */
     List<Department> getAllDeps();
 
 
+    /**
+     * 添加部门信息
+     *
+     * @param departmentName
+     * @return
+     */
+    Integer addDepartment(String departmentName);
+
+    /**
+     * 根据部门名称进行查询
+     *
+     * @param departmentName
+     * @return
+     */
+    Department getDepByName(String departmentName);
+
+    /**
+     * 删除部门信息
+     *
+     * @param departmentId
+     * @return
+     */
+    Integer deleteDep(Integer departmentId);
+
+    /**
+     * 修改部门
+     * @param id
+     * @param name
+     * @return
+     */
+    Integer updateDep(@Param("id") Integer id, @Param("name")String name);
 }
