@@ -12,45 +12,54 @@
         <div class="content-nav">
             会议预定 > 修改会议室信息
         </div>
-        <form>
+        <form action="/updateRoom" method="post">
             <fieldset>
                 <legend>会议室信息</legend>
                 <table class="formtable">
                     <tr>
                         <td>门牌号:</td>
                         <td>
-                            <input id="roomnumber" type="text" value="201" maxlength="10"/>
+                            <input name="roomNum" id="roomnumber" type="text" value="${mr.roomNum}" maxlength="10"/>
                         </td>
                     </tr>
                     <tr>
                         <td>会议室名称:</td>
                         <td>
-                            <input id="capacity" type="text" value="第一会议室" maxlength="20"/>
+                            <input name="roomName" id="capacity" type="text" value="${mr.roomName}" maxlength="20"/>
                         </td>
                     </tr>
                     <tr>
                         <td>最多容纳人数：</td>
                         <td>
-                            <input id="roomcapacity" type="text" value="15"/>
+                            <input name="capacity" id="roomcapacity" type="text" value="${mr.capacity}"/>
                         </td>
                     </tr>
                     <tr>
                         <td>当前状态：</td>
                         <td>
-                            <input type="radio" id="status" name="status" checked="checked" value="1"/><label
-                                    for="status">启用</label>
-                            <input type="radio" id="status" name="status"/><label for="status" value="0">停用</label>
-                            <input type="radio" id="status" name="status"/><label for="status" value="-1">删除</label>
+                            <#if mr.status=='0'>
+                                <input type="radio" id="status" name="status" checked="checked" value="0"/>
+                                <label for="status">启用</label>
+                                <input type="radio" id="status" name="status" value="1"/>
+                                <label for="status" value="1">已占用</label>
+                            <#else >
+                                <input type="radio" id="status" name="status" value="0"/>
+                                <label for="status">启用</label>
+                                <input type="radio" id="status" name="status" checked="checked" value="1"/>
+                                <label for="status" value="1">已占用</label>
+                            </#if>
+
                         </td>
                     </tr>
                     <tr>
                         <td>备注：</td>
                         <td>
-                            <textarea id="description" maxlength="200" rows="5" cols="60">本会议室配备了投影、幕布、音响设备。</textarea>
+                            <textarea name="description" id="description" maxlength="200" rows="5" cols="60">${mr.description}</textarea>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2" class="command">
+                            <input type="hidden" name="roomId" value="${mr.roomId}">
                             <input type="submit" value="确认修改" class="clickbutton"/>
                             <input type="button" class="clickbutton" value="返回" onclick="window.history.back();"/>
                         </td>

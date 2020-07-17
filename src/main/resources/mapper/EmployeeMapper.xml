@@ -13,6 +13,25 @@
     <select id="getAllEmpsStatus" resultType="com.zhangyong.meeting.bean.Employee">
         select * from employee where status=#{status};
     </select>
+    <select id="getAllEmps" resultType="com.zhangyong.meeting.bean.Employee">
+        select * from employee where status=#{emp.status}
+        <if test="emp.employeeName!=null">
+            and employeename like concat('%',#{emp.employeeName},'%')
+        </if>
+        <if test="emp.username!=null">
+            and username like concat('%',#{emp.username},'%')
+        </if>
+        limit #{page},#{pagesize}
+    </select>
+    <select id="getTotal" resultType="java.lang.Long">
+        select count(*) from employee where status=#{status}
+        <if test="employeeName!=null">
+            and employeename like concat('%',#{employeeName},'%')
+        </if>
+        <if test="username!=null">
+            and username like concat('%',#{username},'%')
+        </if>
+    </select>
 
     <update id="updatestatus">
         update employee set status=#{status} where employeeid=#{employeeId}

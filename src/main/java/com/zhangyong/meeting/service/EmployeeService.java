@@ -42,4 +42,19 @@ public interface EmployeeService {
      */
     Integer updatestatus(Integer employeeId, Integer status);
 
+    /**
+     * 搜索员工
+     * @param employee
+     * @param page
+     * @param pageSize
+     * @return
+     */
+    List<Employee> getAllEmps(Employee employee, Integer page, Integer pageSize);
+
+    /**
+     * 查询员工总的条数
+     * @param employee
+     * @return
+     */
+    Long getTotal(Employee employee);
 }

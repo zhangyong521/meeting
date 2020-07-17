@@ -43,6 +43,15 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     public Integer updatestatus(Integer employeeId, Integer status) {
-        return employeeDao.updatestatus(employeeId,status);
+        return employeeDao.updatestatus(employeeId, status);
+    }
+
+    public List<Employee> getAllEmps(Employee employee, Integer page, Integer pageSize) {
+        page = (page - 1) * pageSize;
+        return employeeDao.getAllEmps(employee, page, pageSize);
+    }
+
+    public Long getTotal(Employee employee) {
+        return employeeDao.getTotal(employee);
     }
 }

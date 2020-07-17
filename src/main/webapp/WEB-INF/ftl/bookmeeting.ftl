@@ -195,9 +195,9 @@
                         <td>会议室名称：</td>
                         <td>
                             <select name="roomid">
-                                <option value="1">第一会议室</option>
-                                <option value="2">第二会议室</option>
-                                <option value="3">第三会议室</option>
+                                <#list mrs as mr>
+                                    <option value="${mr.roomId}">${mr.roomName}</option>
+                                </#list>
                             </select>
                         </td>
                     </tr>

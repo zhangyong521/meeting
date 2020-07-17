@@ -45,4 +45,21 @@ public interface EmployeeDao {
      * @return
      */
     Integer updatestatus(@Param("employeeId") Integer employeeId, @Param("status") Integer status);
+
+    /**
+     * 查询没有员工信息
+     *
+     * @param employee
+     * @param page
+     * @param pageSize
+     * @return
+     */
+    List<Employee> getAllEmps(@Param("emp") Employee employee, @Param("page") Integer page, @Param("pagesize") Integer pageSize);
+
+    /**
+     * 获取总记录数
+     * @param employee
+     * @return
+     */
+    Long getTotal(Employee employee);
 }

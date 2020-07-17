@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhangyong.meeting.dao.MeetingRoomDao">
+    <insert id="addMr" parameterType="com.zhangyong.meeting.bean.MeetingRoom">
+         insert into meetingroom (roomnum,roomname,capacity,status,description)
+         values (#{roomNum},#{roomName},#{capacity},#{status},#{description});
+    </insert>
+    <update id="updateRoom" parameterType="com.zhangyong.meeting.bean.MeetingRoom">
+        update meetingroom set
+              roomnum=#{roomNum},
+              roomname=#{roomName},
+              capacity=#{capacity},
+              status=#{status},
+              description =#{description}
+        where roomid=#{roomId};
+    </update>
+    <select id="getAllMr" resultType="com.zhangyong.meeting.bean.MeetingRoom">
+        select * from meetingroom;
+    </select>
+    <select id="getMrById" resultType="com.zhangyong.meeting.bean.MeetingRoom">
+        select * from meetingroom where roomid=#{roomId};
+    </select>
+</mapper>
