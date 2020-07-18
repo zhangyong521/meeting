@@ -62,4 +62,11 @@ public interface EmployeeDao {
      * @return
      */
     Long getTotal(Employee employee);
+
+    /**
+     * 根据ID查询员工信息
+     * @param depId
+     * @return
+     */
+    List<Employee> getEmpsByDepId(Integer depId);
 }

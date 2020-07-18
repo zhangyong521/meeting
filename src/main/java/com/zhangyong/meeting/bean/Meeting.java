@@ -3,6 +3,9 @@ package com.zhangyong.meeting.bean;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
+
+
 /**
  * @Author: 张勇
  * @Blog: https://blog.csdn.net/zy13765287861
@@ -19,10 +22,10 @@ public class Meeting {
   private Integer roomId;
   private Integer reservationIstId;
   private Integer numberOfParticipants;
-  private String startTime;
-  private String endTime;
-  private String reservationTime;
-  private String canceledTime;
+  private Date startTime;
+  private Date endTime;
+  private Date reservationTime;
+  private Date canceledTime;
   private String description;
   private String status;
 }

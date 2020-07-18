@@ -1,5 +1,6 @@
 package com.zhangyong.meeting.dao;
 
+import com.zhangyong.meeting.bean.Meeting;
 import com.zhangyong.meeting.bean.MeetingRoom;
 
 import java.util.List;

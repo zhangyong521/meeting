@@ -3,6 +3,8 @@
 <head>
     <title>会议管理系统</title>
     <link rel="stylesheet" href="/styles/common.css"/>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/My97DatePicker/WdatePicker.js"></script>
     <style type="text/css">
         #divfrom {
             float: left;
@@ -72,32 +74,31 @@
             selEmployees = document.getElementById("selEmployees");
             selSelectedEmployees = document.getElementById("selSelectedEmployees");
 
-            for (var i = 0; i < data.length; i++) {
-                var dep = document.createElement("option");
-                dep.value = data[i].departmentid;
-                dep.text = data[i].departmentname;
-                selDepartments.appendChild(dep);
-            }
-
-            fillEmployees();
+            $.get("/alldeps", function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    var item = data[i];
+                    var dep = document.createElement("option");
+                    dep.value = item.departmentId;
+                    dep.text = item.departmentName;
+                    selDepartments.appendChild(dep);
+                }
+                fillEmployees();
+            })
         }
 
         function fillEmployees() {
             clearList(selEmployees);
             var departmentid = selDepartments.options[selDepartments.selectedIndex].value;
-            var employees;
-            for (var i = 0; i < data.length; i++) {
-                if (departmentid == data[i].departmentid) {
-                    employees = data[i].employees;
-                    break;
+            $.get("/getempsbydepid?depId=" + departmentid, function (data) {
+                employees = data;
+                for (i = 0; i < data.length; i++) {
+                    var emp = document.createElement("option");
+                    emp.value = employees[i].employeeId;
+                    emp.text = employees[i].employeeName;
+                    selEmployees.appendChild(emp);
                 }
-            }
-            for (i = 0; i < employees.length; i++) {
-                var emp = document.createElement("option");
-                emp.value = employees[i].employeeid;
-                emp.text = employees[i].employeename;
-                selEmployees.appendChild(emp);
-            }
+            })
+
         }
 
         function clearList(list) {
@@ -144,6 +145,7 @@
             var opt = document.createElement("option");
             opt.value = optEmployee.value;
             opt.text = optEmployee.text;
+            opt.selected = true;
 
             if (insertIndex == -1) {
                 selSelectedEmployees.appendChild(opt);
@@ -161,40 +163,40 @@
         <div class="content-nav">
             会议预定 > 预定会议
         </div>
-        <form>
+        <form action="/doAddMeeting">
             <fieldset>
                 <legend>会议信息</legend>
                 <table class="formtable">
                     <tr>
                         <td>会议名称：</td>
                         <td>
-                            <input type="text" id="meetingname" maxlength="20"/>
+                            <input name="meetingName" type="text" id="meetingname" maxlength="20"/>
                         </td>
                     </tr>
                     <tr>
                         <td>预计参加人数：</td>
                         <td>
-                            <input type="text" id="numofattendents"/>
+                            <input name="numberOfParticipants" type="text" id="numofattendents"/>
                         </td>
                     </tr>
                     <tr>
                         <td>预计开始时间：</td>
                         <td>
-                            <input type="date" id="startdate"/>
-                            <input type="time" id="starttime"/>
+                            <input type="text" class="Wdate" id="starttime" name="startTime"
+                                   onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/>
                         </td>
                     </tr>
                     <tr>
                         <td>预计结束时间：</td>
                         <td>
-                            <input type="date" id="enddate"/>
-                            <input type="time" id="endtime"/>
+                            <input type="text" class="Wdate" id="endtime" name="endTime"
+                                   onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/>
                         </td>
                     </tr>
                     <tr>
                         <td>会议室名称：</td>
                         <td>
-                            <select name="roomid">
+                            <select name="roomId">
                                 <#list mrs as mr>
                                     <option value="${mr.roomId}">${mr.roomName}</option>
                                 </#list>
@@ -204,7 +206,7 @@
                     <tr>
                         <td>会议说明：</td>
                         <td>
-                            <textarea id="description" rows="5"></textarea>
+                            <textarea name="description" id="description" rows="5"></textarea>
                         </td>
                     </tr>
                     <tr>
@@ -221,8 +223,7 @@
                                 <input type="button" class="clickbutton" value="&lt;" onclick="deSelectEmployees()"/>
                             </div>
                             <div id="divto">
-                                <select id="selSelectedEmployees" multiple="true">
-                                </select>
+                                <select name="mps" id="selSelectedEmployees" multiple="true"></select>
                             </div>
                         </td>
                     </tr>

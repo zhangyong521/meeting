@@ -32,6 +32,9 @@
             and username like concat('%',#{username},'%')
         </if>
     </select>
+    <select id="getEmpsByDepId" resultType="com.zhangyong.meeting.bean.Employee">
+         select * from employee where departmentid=#{depId};
+    </select>
 
     <update id="updatestatus">
         update employee set status=#{status} where employeeid=#{employeeId}

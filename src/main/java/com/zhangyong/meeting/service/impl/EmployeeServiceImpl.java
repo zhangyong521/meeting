@@ -54,4 +54,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Long getTotal(Employee employee) {
         return employeeDao.getTotal(employee);
     }
+
+    public List<Employee> getEmpsByDepId(Integer depId) {
+        return employeeDao.getEmpsByDepId(depId);
+    }
 }

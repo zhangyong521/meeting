@@ -57,4 +57,11 @@ public interface EmployeeService {
      * @return
      */
     Long getTotal(Employee employee);
+
+    /**
+     * 根据ID查询员工
+     * @param depId
+     * @return
+     */
+    List<Employee> getEmpsByDepId(Integer depId);
 }

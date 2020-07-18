@@ -1,5 +1,6 @@
 package com.zhangyong.meeting.service.impl;
 
+import com.zhangyong.meeting.bean.Meeting;
 import com.zhangyong.meeting.bean.MeetingRoom;
 import com.zhangyong.meeting.dao.MeetingRoomDao;
 import com.zhangyong.meeting.service.MeetingRoomService;
@@ -40,4 +41,5 @@ public class MeetingRoomServiceImpl implements MeetingRoomService {
     public Integer addMr(MeetingRoom meetingRoom) {
         return meetingRoomDao.addMr(meetingRoom);
     }
+
 }

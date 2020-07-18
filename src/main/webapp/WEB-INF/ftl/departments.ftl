@@ -3,7 +3,7 @@
 <head>
     <title>会议管理系统</title>
     <link rel="stylesheet" href="/styles/common.css"/>
-    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <script src="/js/jquery.min.js"></script>
 </head>
 <body>
 <#include 'top.ftl'>

@@ -1,0 +1,17 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhangyong.meeting.dao.MeetingDao">
+    <insert id="addMeeting" parameterType="com.zhangyong.meeting.bean.Meeting" useGeneratedKeys="true"
+            keyProperty="meetingId">
+        insert into meeting (meetingname,roomid,reservationistid,numberofparticipants,starttime,endtime,reservationtime,canceledtime,description,status)
+        values (#{meetingName},#{roomId},#{reservationIstId},#{numberOfParticipants},#{startTime},#{endTime},#{reservationTime},#{canceledTime},#{description},#{status});
+    </insert>
+
+    <insert id="addParticipants">
+        insert into meetingparticipants (meetingid,employeeid) values
+        <foreach collection="mps" item="mp" separator=",">
+            (#{meetingId},#{mp})
+        </foreach>
+    </insert>
+</mapper>
